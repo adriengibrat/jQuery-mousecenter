@@ -12,7 +12,7 @@ Usage exemples:
 ```javascript
 $( 'selector' )
 
-  // default distance is 50 pixels, center area is a 50px radius circle.
+	// default distance is 50 pixels, center area is a 50px radius circle.
 	.centermouseenter( function () {
 		... your code ...
 	} )
