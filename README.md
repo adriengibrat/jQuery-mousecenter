@@ -8,7 +8,7 @@ a function taking cursor coordinates x,y relative to center as arguments and ret
 The distance is passed in or as data argument when you bind your function.
 
 Usage exemples:
-
+```javascript
 $( 'selector' )
 
   // default distance is 50 pixels, center area is a 50px radius circle.
@@ -28,13 +28,15 @@ $( 'selector' )
 	;
 var square40 = function ( x, y ) {
 	return 20 >= Math.abs( x ) && 20 >= Math.abs( y );
-}
+};
 $( 'selector' )
 	// distance function as data, center area is a 2 * 20px side square.
 	// you can pass function in data argument as well.
-	// you can use $.centermouse( 'square', size ) to easily create function checking various "square size"
+	// you can use $.centermouse( 'square', size ) to easily create function checking various "square size" :
+	// in this exemple, square40 === $.centermouse( 'square', 20 )
 	// you can extend $.centermouse to create new resizable shapes (@see end of file)
 	.centermouseleave( square40, function () {
 		... your code ...
 	} )
 	;
+```
