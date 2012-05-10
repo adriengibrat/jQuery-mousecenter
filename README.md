@@ -5,6 +5,7 @@ Trigger special events when mouse enter / leave element center area.
 
 You can specify a distance that define the center area, it can be an integer or 
 a function taking cursor coordinates x,y relative to center as arguments and returning a boolean.
+
 The distance is passed in or as data argument when you bind your function.
 
 Usage exemples:
