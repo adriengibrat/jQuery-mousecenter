@@ -32,7 +32,8 @@
         }
     ],
     "files": [
-        "jquery.mousecenter.js"
+        "jquery.mousecenter.js",
+        "jquery.mousecenter.min.js"
     ]
     "keywords": [
         "mouse",
