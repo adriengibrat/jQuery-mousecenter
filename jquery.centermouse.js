@@ -175,7 +175,7 @@ $( 'selector' )
 				, circle : function ( x, y ) {
 					return this >= Math.sqrt( Math.pow( x, 2 ) + Math.pow( y, 2 ) );
 				}
-				// you can extend $.centermouse with you own shapes !
+				// now, you can extend $.centermouse with you own shapes !
 			}
 		)
 	} );
