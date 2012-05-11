@@ -78,7 +78,7 @@ $( 'selector' )
 				// All states of binded events
 				, state  = self.data( 'centermouse' )
 				// Previous state
-				, inside = state[ handleObj.guid 
+				, inside = state[ handleObj.guid ]
 				// Default center area is a circle
 				, within = $.isFunction( distance ) ? distance : $.centermouse( 'circle', distance )
 				, offset = self.offset()
