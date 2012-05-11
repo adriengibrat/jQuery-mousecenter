@@ -43,7 +43,7 @@ $( 'selector' )
 // You can extend $.centermouse to create new resizable shapes (@see end of jquery.centermouse.js)
 
  */
-;( function ( $ ) {
+( function ( $ ) {
 	/**
 	 * Add function binding to JavaScript prior 1.8.5
 	 * @see https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind
@@ -140,7 +140,7 @@ $( 'selector' )
 		};
 		// Add event binding / triggering methods
 		$.fn[ name ]            = function( data, fn ) {
-			if ( fn == null ) {
+			if ( ! fn ) {
 				fn   = data;
 				data = null;
 			}
