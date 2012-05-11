@@ -1,4 +1,6 @@
 /**
+ * jQuery mouseCenter v1.0
+ * 
  * Author: Adrien Gibrat <adrien.gibrat@gmail.com>
  * 
  * Trigger special events when mouse enter / leave element center area.
