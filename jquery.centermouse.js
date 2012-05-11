@@ -1,5 +1,5 @@
 /**
- * jQuery mouseCenter v1.0
+ * jQuery mouseCenter v1.0.0
  * 
  * Author: Adrien Gibrat <adrien.gibrat@gmail.com>
  * 
