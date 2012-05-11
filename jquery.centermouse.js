@@ -12,17 +12,17 @@
  * Usage exemples:
 $( 'selector' )
 
-	// default distance is 50 pixels, center area is a 50px radius circle.
+	// Default distance is 50 pixels, center area is a 50px radius circle.
 	.centermouseenter( function () {
 		... your code ...
 	} )
 
-	// distance integer as data argument, center area is a 20px radius circle.
+	// Distance integer as data argument, center area is a 20px radius circle.
 	.centermouseleave( 20, function () {
 		... your code ...
 	} )
 
-	// distance in data argument, center area is a 20px radius circle.
+	// Distance in data argument, center area is a 20px radius circle.
 	.centermouseenter( { distance: 20, customdata: 'foo' }, function () {
 		... your code ...
 	} )
@@ -31,15 +31,17 @@ var square40 = function ( x, y ) {
 	return 20 >= Math.abs( x ) && 20 >= Math.abs( y );
 };
 $( 'selector' )
-	// distance function as data, center area is a 2 * 20px side square.
-	// you can pass function in data argument as well.
-	// you can use $.centermouse( 'square', size ) to easily create function checking various "square size" :
-	// in this exemple, square40 === $.centermouse( 'square', 20 )
-	// you can extend $.centermouse to create new resizable shapes (@see end of file)
+	// Distance function as data, center area is a 2 * 20px side square.
+	// You can pass function in data argument as well.
 	.centermouseleave( square40, function () {
 		... your code ...
 	} )
 	;
+// For example clarity sake, i used the square40 plain function
+// But you can use $.centermouse( 'square', size ) to easily create function for various "square size",
+// In this exemple: square40 === $.centermouse( 'square', 20 )
+// You can extend $.centermouse to create new resizable shapes (@see end of jquery.centermouse.js)
+
  */
 ;( function ( $ ) {
 	/**
@@ -69,18 +71,22 @@ $( 'selector' )
 		 * @param distance int|function, distance in pixel or function returning if given point (x, y) is within an area
 		 * @param handleObj object, original event handle
 		 * @param event object, jQuery event
-		 * @return false
+		 * @return mixed
 		 */
-		handle   = function ( type, distance, handleObj, event ) {
+		handler = function ( type, distance, handleObj, event ) {
 			var self     = $( this )
-				, state  = self.data( 'centermouse' ) // all states of binded events
-				, inside = state[ handleObj.guid ] // previous state
+				// All states of binded events
+				, state  = self.data( 'centermouse' )
+				// Previous state
+				, inside = state[ handleObj.guid 
+				// Default center area is a circle
 				, within = $.isFunction( distance ) ? distance : $.centermouse( 'circle', distance )
 				, offset = self.offset()
 			;
-			// is within area relative to center 
+			// Is within area relative to center 
 			if ( within( event.pageX - offset.left - self.width() / 2, event.pageY - offset.top - self.height() / 2 ) ) {
 				if ( ! inside ) {
+					// Store new state
 					state[ handleObj.guid ] = true;
 					if ( 'enter' === type ) {
 						event.type = 'centermouseenter';
@@ -89,6 +95,7 @@ $( 'selector' )
 				}
 			} else {
 				if ( inside ) {
+					// Store new state
 					state[ handleObj.guid ] = false;
 					if ( 'leave' === type ) {
 						event.type = 'centermouseleave';
@@ -96,7 +103,6 @@ $( 'selector' )
 					}
 				}
 			}
-			return false;
 		};
 	/**
 	 * Add events to jQuery
@@ -115,7 +121,7 @@ $( 'selector' )
 			, add      : function ( handleObj ) {
 				var distance = ( $.isPlainObject( handleObj.data ) ? handleObj.data.distance : handleObj.data ) || 50;
 				$( this )
-					.bind( 'mousemove.centermouse' + handleObj.guid, handle.bind( this, type, distance, handleObj ) )
+					.bind( 'mousemove.centermouse' + handleObj.guid, handler.bind( this, type, distance, handleObj ) )
 					.data( 'centermouse' )[ handleObj.guid ] = false
 				;
 			}

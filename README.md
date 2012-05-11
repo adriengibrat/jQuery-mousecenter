@@ -12,17 +12,17 @@ Usage exemples:
 ```javascript
 $( 'selector' )
 
-	// default distance is 50 pixels, center area is a 50px radius circle.
+	// Default distance is 50 pixels, center area is a 50px radius circle.
 	.centermouseenter( function () {
 		... your code ...
 	} )
 
-	// distance integer as data argument, center area is a 20px radius circle.
+	// Distance integer as data argument, center area is a 20px radius circle.
 	.centermouseleave( 20, function () {
 		... your code ...
 	} )
 
-	// distance in data argument, center area is a 20px radius circle.
+	// Distance in data argument, center area is a 20px radius circle.
 	.centermouseenter( { distance: 20, customdata: 'foo' }, function () {
 		... your code ...
 	} )
@@ -31,13 +31,15 @@ var square40 = function ( x, y ) {
 	return 20 >= Math.abs( x ) && 20 >= Math.abs( y );
 };
 $( 'selector' )
-	// distance function as data, center area is a 2 * 20px side square.
-	// you can pass function in data argument as well.
-	// you can use $.centermouse( 'square', size ) to easily create function for various "square size",
-	// in this exemple: square40 === $.centermouse( 'square', 20 )
-	// you can extend $.centermouse to create new resizable shapes (@see end of jquery.centermouse.js)
+	// Distance function as data, center area is a 2 * 20px side square.
+	// You can pass function in data argument as well.
 	.centermouseleave( square40, function () {
 		... your code ...
 	} )
 	;
+// For example clarity sake, i used the square40 plain function
+// But you can use $.centermouse( 'square', size ) to easily create function for various "square size",
+// In this exemple: square40 === $.centermouse( 'square', 20 )
+// You can extend $.centermouse to create new resizable shapes (@see end of jquery.centermouse.js)
+
 ```
