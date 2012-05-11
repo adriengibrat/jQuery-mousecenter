@@ -13,17 +13,17 @@ Usage exemples:
 $( 'selector' )
 
 	// Default distance is 50 pixels, center area is a 50px radius circle.
-	.centermouseenter( function () {
+	.mousecenterenter( function () {
 		... your code ...
 	} )
 
 	// Distance integer as data argument, center area is a 20px radius circle.
-	.centermouseleave( 20, function () {
+	.mousecenterleave( 20, function () {
 		... your code ...
 	} )
 
 	// Distance in data argument, center area is a 20px radius circle.
-	.centermouseenter( { distance: 20, customdata: 'foo' }, function () {
+	.mousecenterenter( { distance: 20, customdata: 'foo' }, function () {
 		... your code ...
 	} )
 	;
@@ -33,13 +33,13 @@ var square40 = function ( x, y ) {
 $( 'selector' )
 	// Distance function as data, center area is a 2 * 20px side square.
 	// You can pass function in data argument as well.
-	.centermouseleave( square40, function () {
+	.mousecenterleave( square40, function () {
 		... your code ...
 	} )
 	;
 // For example clarity sake, i used the square40 plain function
-// But you can use $.centermouse( 'square', size ) to easily create function for various "square size",
-// In this exemple: square40 === $.centermouse( 'square', 20 )
-// You can extend $.centermouse to create new resizable shapes (@see end of jquery.centermouse.js)
+// But you can use $.mousecenter( 'square', size ) to easily create function for various "square size",
+// In this exemple: square40 === $.mousecenter( 'square', 20 )
+// You can extend $.mousecenter to create new resizable shapes (@see end of jquery.mousecenter.js)
 
 ```
