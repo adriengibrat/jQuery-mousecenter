@@ -33,9 +33,9 @@ var square40 = function ( x, y ) {
 $( 'selector' )
 	// distance function as data, center area is a 2 * 20px side square.
 	// you can pass function in data argument as well.
-	// you can use $.centermouse( 'square', size ) to easily create function checking various "square size" :
-	// in this exemple, square40 === $.centermouse( 'square', 20 )
-	// you can extend $.centermouse to create new resizable shapes (@see end of file)
+	// you can use $.centermouse( 'square', size ) to easily create function for various "square size",
+	// in this exemple: square40 === $.centermouse( 'square', 20 )
+	// you can extend $.centermouse to create new resizable shapes (@see end of jquery.centermouse.js)
 	.centermouseleave( square40, function () {
 		... your code ...
 	} )
