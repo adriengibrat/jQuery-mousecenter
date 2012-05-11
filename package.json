@@ -1,0 +1,38 @@
+{
+    'name': 'jquery.mousecenter',
+    'version': '1.0.0',
+    'title': 'jQuery mouseCenter',
+    'author': {
+        'name': 'Adrien Gibrat',
+        'url': 'https://github.com/adriengibrat'
+    },
+    'licenses': [
+        {
+            'type': 'MIT',
+            'url': 'MIT-LICENSE.txt'
+        },
+        {
+            'type': 'GPLv2',
+            'url': 'GPL-LICENSE.txt'
+        }
+    ],
+    'dependencies': {
+        'jquery': '>=1.4.2'
+    },
+    'description': 'Trigger special events when mouse enter / leave element center area.',
+    'keywords': [
+        'mouse',
+        'event',
+        'center'
+    ],
+    'homepage': 'https://github.com/adriengibrat/jQuery-mousecenter',
+    'maintainers': [
+        {
+            'name': 'Adrien Gibrat',
+            'url': 'https://github.com/adriengibrat'
+        }
+    ],
+    'files': [
+        'jquery.mousecenter.js'
+    ]
+}
