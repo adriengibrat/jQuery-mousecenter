@@ -1,43 +1,45 @@
 {
-    "name"        : "jquery.mousecenter",
-    "title"       : "jQuery mouseCenter",
-    "description" : "Trigger special events when mouse enter / leave element center area.",
-    "version"     : "1.0.0",
-    "dependencies": {
-        "jquery": ">=1.4.2"
-    },
-    "homepage"    : "https://github.com/adriengibrat/jQuery-mousecenter",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/adriengibrat/jQuery-mousecenter.git"
-    },
-    "author"      : {
-        "name": "Adrien Gibrat",
-        "url" : "https://github.com/adriengibrat"
-    },
-    "maintainers": [
-        {
-            "name": "Adrien Gibrat",
-            "url" : "https://github.com/adriengibrat"
-        }
-    ],
-    "licenses": [
-        {
-            "type": "MIT",
-            "url" : "MIT-LICENSE.txt"
-        },
-        {
-            "type": "GPLv2",
-            "url" : "GPL-LICENSE.txt"
-        }
-    ],
-    "files": [
-        "jquery.mousecenter.js",
-        "jquery.mousecenter.min.js"
-    ]
-    "keywords": [
-        "mouse",
-        "event",
-        "center"
-    ]
+	"name"        : "jquery.mousecenter",
+	"title"       : "jQuery mouseCenter",
+	"description" : "Trigger special events when mouse enter / leave element center area.",
+	"version"     : "1.0.0",
+	"dependencies": {
+		"jquery": ">=1.4.2"
+	},
+	"homepage"    : "https://github.com/adriengibrat/jQuery-mousecenter",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/adriengibrat/jQuery-mousecenter.git"
+	},
+	"author"      : {
+		"name": "Adrien Gibrat",
+		"url" : "https://github.com/adriengibrat"
+	},
+	"maintainers": [
+		{
+			"name": "Adrien Gibrat",
+			"url" : "https://github.com/adriengibrat"
+		}
+	],
+	"licenses": [
+		{
+			"type": "MIT",
+			"url" : "MIT-LICENSE.txt"
+		},
+		{
+			"type": "GPLv2",
+			"url" : "GPL-LICENSE.txt"
+		}
+	],
+	"files": [
+		"jquery.mousecenter.js",
+		"jquery.mousecenter.min.js"
+	]
+	"keywords": [
+		"event",
+		"mouse",
+		"mouse event",
+		"special event",
+		"center"
+	]
 }
