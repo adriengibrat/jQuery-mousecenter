@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 		<title>Jquery-mousecenter by adriengibrat</title>
 		<link type="text/css" rel="stylesheet" href="http://orderedlist.github.com/minimal/stylesheets/styles.css">
-		<style type="text/css">@media print, screen and (max-height: 400px) { footer { display:none; } }</style>
+		<style type="text/css">h3,pre{clear:both;}@media print, screen and (max-height: 400px) { footer { display:none; } }</style>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -24,8 +24,42 @@
 				</ul>
 			</header>
 			<section>
-				<h3>Welcome to GitHub Pages.</h3>
-				<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+				<h3>jQuery Special Events !</h3>
+				<p>jQuery mouseCenter allow you to bind and trigger custom handler functions when mouse enter or leave the center area of an element. The idea is to check if mouse enter or leave the center area while mouse move over the element and then trigger proper events.</p>
+				<p>The plugin add two new events to jQuery: <code>mousecenterenter</code> and <code>mousecenterleave</code>. You use it like any other event type but when binding your event handler function, optional data argument allow you to specify size and shape of the center area. Live and delegate methods are not yet supported.</p>
+				<p> All the heavy lifting is done using jQuery special event API. If you want to know more about jQuery special events, please have a look at <a href="http://brandonaaron.net/blog/2009/03/26/special-events">clear &amp; short example</a> by Brandon Aaron or Ben Alman's <a href="http://benalman.com/news/2010/03/jquery-special-events/">detailed documentation</a>.</p>
+				<h3>How to use it ?</h3>
+				<p></p>
+				<h3>Simple Demos</h3>
+				<p>Following example use images because it's a typical case where you don't want any additional markup. Enough explanations now, try it !</p>
+				<h4>Alert when hiting center of the target.</h4>
+				<code class="run"><pre>
+$( '#target' )
+.mousecenterenter( 14, function () {
+  alert( 'Hit !' );
+} );</pre></code>
+				<img id="target" src="http://a.dryicons.com/images/icon_sets/colorful_stickers_part_5_icons_set/png/128x128/target.png" alt="target example" style="width:128px;height:128px;float:right;margin:-130px 0 0 2em;">
+				<h4>Crosshair cursor on centered square.</h4>
+				<code class="run"><pre>
+$( '#circles_square' )
+.mousecenterleave( $.mousecenter( 'square', 60 ), function () {
+  $( this ).css( { cursor: 'default' } );
+} )
+.mousecenterenter( $.mousecenter( 'square', 60 ), function () {
+  $( this ).css( { cursor: 'crosshair' } );
+} );</pre></code>
+				<img id="circles_square" src="http://images.braingle.com/images/illusions/30387.gif" alt="circles and square example" style="width:250px;height:250px;float:left;margin:-10px 2em 0 0;">
+				<p>You may bind multiple mousecenter events: let's add pointer cursor on smaller circle.</p>
+				<code class="run"><pre style="clear:none;">
+$( '#circles_square' )
+.mousecenterenter( 12, function () {
+  $( this ).css( { cursor: 'move' } );
+} )
+.mousecenterleave( 12, function () {
+  $( this ).css( { cursor: 'pointer' } );
+} );</pre></code>
+				<h3>Play Ground</h3>
+				<p></p>
 			</section>
 			<footer>
 				<p>This project is maintained by <a class="user-mention" href="https://github.com/adriengibrat">adriengibrat</a></p>
@@ -33,5 +67,14 @@
 			</footer>
 		</div>
 		<script type="text/javascript" src="http://orderedlist.github.com/minimal/javascripts/scale.fix.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="jquery.mousecenter.min.js"></script>
+		<script type="text/javascript">
+			$( function () {
+				$( 'code.run' ).each( function () {
+					$.globalEval( $( this ).text() );
+				} );
+			} );
+		</script>
 	</body>
 </html>
