@@ -3,10 +3,13 @@ jQuery-mousecenter
 
 Trigger special events when mouse enter / leave element center area.
 
-You can specify a distance that define the center area, it can be an integer or 
-a function taking cursor coordinates x,y relative to center as arguments and returning a boolean.
+You can specify shape and distance that define the center area. 
+It can be an integer, in that case the default shape is a circle,
+or a function defining a shape taking cursor coordinates x,y 
+relative to center of element as arguments and returning a boolean.
 
-The distance is passed in or as data argument when you bind your function.
+The shape/distance is passed in or as data argument when you bind your function: 
+you can pass interger or function as data or in a hash as 'distance' property.
 
 Usage exemples:
 ```javascript

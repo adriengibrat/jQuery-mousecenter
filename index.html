@@ -29,7 +29,8 @@
 				<p>The plugin add two new events to jQuery: <code>mousecenterenter</code> and <code>mousecenterleave</code>. You use it like any other event type but when binding your event handler function, optional data argument allow you to specify size and shape of the center area. Live and delegate methods are not yet supported.</p>
 				<p> All the heavy lifting is done using jQuery special event API. If you want to know more about jQuery special events, please have a look at <a href="http://brandonaaron.net/blog/2009/03/26/special-events">clear &amp; short example</a> by Brandon Aaron or Ben Alman's <a href="http://benalman.com/news/2010/03/jquery-special-events/">detailed documentation</a>.</p>
 				<h3>How to use it ?</h3>
-				<p></p>
+				<p>You can specify shape and distance that define the center area. It can be an integer, in that case the default shape is a circle, or a function defining a shape taking cursor coordinates x,y relative to center of element as arguments and returning a boolean.
+				<p>The shape/distance is passed in or as data argument when you bind your function: you can pass interger or function as data or in a hash as 'distance' property.</p>
 				<h3>Simple Demos</h3>
 				<p>Following example use images because it's a typical case where you don't want any additional markup. Enough explanations now, try it !</p>
 				<h4>Alert when hiting center of the target.</h4>
