@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 		<title>Jquery-mousecenter by adriengibrat</title>
 		<link type="text/css" rel="stylesheet" href="http://orderedlist.github.com/minimal/stylesheets/styles.css">
+		<link type="text/css" rel="stylesheet" href="http://onehackoranother.com/projects/jquery/tipsy/stylesheets/tipsy.css">
 		<style type="text/css">h3,pre{clear:both;}@media print, screen and (max-height: 400px) and (min-width: 960px) { footer { display:none; } }</style>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<!--[if lt IE 9]>
@@ -88,6 +89,17 @@ $( '#circles_square' )
 .mousecenterleave( 12, function () {
   $( this ).css( { cursor: 'crosshair' } );
 } );</pre></code>
+				<h4>Tooltip on static map marker.</h4>
+				<img id="map" src="http://maps.googleapis.com/maps/api/staticmap?markers=Paris,France&size=200x160&zoom=16&sensor=false" alt="map example" style="width:200px;height:160px;float:right; margin: 0 0 0 2em;" title="I ❤ Paris">
+				<code class="run"><pre style="clear:none;">
+$( '#map' )
+.tipsy( { trigger: 'manual', gravity: 's' } )
+.mousecenterenter( 30, function () {
+  $( this ).tipsy( 'show' );
+} )
+.mousecenterleave( 30, function () {
+  $( this ).tipsy( 'hide' );
+} );</pre></code>
 				<h3>Play Ground</h3>
 				<p>Coming soon, a last demo you can <s>play</s> code with&nbsp;!</p>
 			</section>
@@ -98,6 +110,7 @@ $( '#circles_square' )
 		</div>
 		<script type="text/javascript" src="http://orderedlist.github.com/minimal/javascripts/scale.fix.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="http://onehackoranother.com/projects/jquery/tipsy/javascripts/jquery.tipsy.js"></script>
 		<script type="text/javascript" src="jquery.mousecenter.min.js"></script>
 		<script type="text/javascript">
 			$( function () {
