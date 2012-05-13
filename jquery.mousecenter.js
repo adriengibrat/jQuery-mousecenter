@@ -157,12 +157,11 @@ $( 'selector' )
 		/**
 		 * Create function that check if a point inside a shape
 		 * @param shape string, name of the shape to create (must be a helper name)
-		 * @param size int, size of the shape
+		 * @param size int, size of the shape ( but you could pass any object for your custom shape helper)
 		 * @return function, that take point coordinates to check if it's inside the shape
 		 */
 		function ( shape, size ) {
-			shape = arguments.callee[ shape ];
-			return shape && shape.bind( size );
+			return ( shape = $[ namespace ][ shape ] ) && shape.bind( size );
 		}
 		, {
 			/**
