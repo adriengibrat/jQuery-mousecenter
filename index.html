@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 		<title>Jquery-mousecenter by adriengibrat</title>
 		<link type="text/css" rel="stylesheet" href="http://orderedlist.github.com/minimal/stylesheets/styles.css">
-		<style type="text/css">h3,pre{clear:both;}@media print, screen and (max-height: 400px) { footer { display:none; } }</style>
+		<style type="text/css">h3,pre{clear:both;}@media print, screen and (max-height: 400px) and (min-width: 960px) { footer { display:none; } }</style>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -30,7 +30,34 @@
 				<p> All the heavy lifting is done using jQuery special event API. If you want to know more about jQuery special events, please have a look at <a href="http://brandonaaron.net/blog/2009/03/26/special-events">clear &amp; short example</a> by Brandon Aaron or Ben Alman's <a href="http://benalman.com/news/2010/03/jquery-special-events/">detailed documentation</a>.</p>
 				<h3>How to use it ?</h3>
 				<p>You can specify shape and distance that define the center area. It can be an integer, in that case the default shape is a circle, or a function defining a shape taking cursor coordinates x,y relative to center of element as arguments and returning a boolean.
-				<p>The shape/distance is passed in or as data argument when you bind your function: you can pass interger or function as data or in a hash as 'distance' property.</p>
+				<p>The shape/distance is passed in or as data argument when you bind your function: you can pass integer and function as data or in a hash as 'distance' property.</p>
+				<p>The $.mousecenter helper allow you to generate shape definition function of any size you need and to store shape definitions.</p>
+				<h3>Usage examples</h3>
+				<code><pre>
+$( 'selector' )
+  // Default distance is 50 pixels, center area is a 50px radius circle.
+  .mousecenterenter( function () {
+    ... your code ...
+  } )
+  // Distance integer as data argument, center area is a 20px radius circle.
+  .mousecenterleave( 20, function () {
+    ... your code ...
+  } )
+  // Distance in data argument, center area is a 20px radius circle.
+  .mousecenterenter( { distance: 20, customdata: 'foo' }, function () {
+    ... your code ...
+  } );</pre></code>
+				<code><pre>
+var square40 = function ( x, y ) {
+  return 20 >= Math.abs( x ) && 20 >= Math.abs( y );
+};
+$( 'selector' )
+  // Distance function as data, center area is a 2 * 20px side square.
+  // You can pass function in data argument as well.
+  .mousecenterleave( square40, function () {
+    ... your code ...
+  } );</pre></code>
+				<p>For example clarity sake, i used the square40 plain function. But you can use $.mousecenter( 'square', size ) to easily create function for various "square size", in this exemple: square40 === $.mousecenter( 'square', 20 ).</p>
 				<h3>Simple Demos</h3>
 				<p>Following example use images because it's a typical case where you don't want any additional markup. Enough explanations now, try it !</p>
 				<h4>Alert when hiting center of the target.</h4>

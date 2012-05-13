@@ -9,7 +9,7 @@ or a function defining a shape taking cursor coordinates x,y
 relative to center of element as arguments and returning a boolean.
 
 The shape/distance is passed in or as data argument when you bind your function: 
-you can pass interger or function as data or in a hash as 'distance' property.
+you can pass integer and function as data or in a hash as 'distance' property.
 
 Usage exemples:
 ```javascript
