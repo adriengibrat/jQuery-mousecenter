@@ -24,15 +24,16 @@
 				</ul>
 			</header>
 			<section>
-				<h3>jQuery Special Events !</h3>
+				<h3>jQuery Special Events&nbsp;!</h3>
 				<p>jQuery mouseCenter allow you to bind and trigger custom handler functions when mouse enter or leave the center area of an element. The idea is to check if mouse enter or leave the center area while mouse move over the element and then trigger proper events.</p>
-				<p>The plugin add two new events to jQuery: <code>mousecenterenter</code> and <code>mousecenterleave</code>. You use it like any other event type but when binding your event handler function, optional data argument allow you to specify size and shape of the center area. Live and delegate methods are not yet supported.</p>
+				<p>The plugin add two new events to jQuery&nbsp;: <code>mousecenterenter</code> and <code>mousecenterleave</code>. You use it like any other event type but when binding your event handler function, optional data argument allow you to specify size and shape of the center area. Live and delegate methods are not yet supported.</p>
 				<p> All the heavy lifting is done using jQuery special event API. If you want to know more about jQuery special events, please have a look at <a href="http://brandonaaron.net/blog/2009/03/26/special-events">clear &amp; short example</a> by Brandon Aaron or Ben Alman's <a href="http://benalman.com/news/2010/03/jquery-special-events/">detailed documentation</a>.</p>
-				<h3>How to use it ?</h3>
+				<h3>How to use it&nbsp;?</h3>
 				<p>You can specify shape and distance that define the center area. It can be an integer, in that case the default shape is a circle, or a function defining a shape taking cursor coordinates x,y relative to center of element as arguments and returning a boolean.
 				<p>The shape/distance is passed in or as data argument when you bind your function: you can pass integer and function as data or in a hash as 'distance' property.</p>
 				<p>The $.mousecenter helper allow you to generate shape definition function of any size you need and to store shape definitions.</p>
 				<h3>Usage examples</h3>
+				<p>With integer as and in data argument&nbsp;:</p>
 				<code><pre>
 $( 'selector' )
   // Default distance is 50 pixels, center area is a 50px radius circle.
@@ -47,6 +48,7 @@ $( 'selector' )
   .mousecenterenter( { distance: 20, customdata: 'foo' }, function () {
     ... your code ...
   } );</pre></code>
+				<p>With custom shape function&nbsp;:</p>
 				<code><pre>
 var square40 = function ( x, y ) {
   return 20 >= Math.abs( x ) && 20 >= Math.abs( y );
@@ -57,9 +59,9 @@ $( 'selector' )
   .mousecenterleave( square40, function () {
     ... your code ...
   } );</pre></code>
-				<p>For example clarity sake, i used the square40 plain function. But you can use $.mousecenter( 'square', size ) to easily create function for various "square size", in this exemple: square40 === $.mousecenter( 'square', 20 ).</p>
+				<p>For example clarity sake, i used the square40 plain function. But you can use $.mousecenter( 'square', size ) to easily create function for various "square size", in this exemple&nbsp;: square40&nbsp;===&nbsp;$.mousecenter(&nbsp;'square',&nbsp;20&nbsp;).</p>
 				<h3>Simple Demos</h3>
-				<p>Following example use images because it's a typical case where you don't want any additional markup. Enough explanations now, try it !</p>
+				<p>Following example use images because it's a typical case where you don't want any additional markup. Enough explanations now, try it&nbsp;!</p>
 				<h4>Alert when hiting center of the target.</h4>
 				<code class="run"><pre>
 $( '#target' )
@@ -77,7 +79,7 @@ $( '#circles_square' )
   $( this ).css( { cursor: 'crosshair' } );
 } );</pre></code>
 				<img id="circles_square" src="http://images.braingle.com/images/illusions/30387.gif" alt="circles and square example" style="width:250px;height:250px;float:left;margin:-10px 2em 0 0;">
-				<p>You may bind multiple mousecenter events: let's add pointer cursor on smaller circle.</p>
+				<p>You may bind multiple mousecenter events&nbsp;: let's add pointer cursor on smaller circle.</p>
 				<code class="run"><pre style="clear:none;">
 $( '#circles_square' )
 .mousecenterenter( 12, function () {
