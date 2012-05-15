@@ -6,7 +6,7 @@
 		<title>Jquery-mousecenter by adriengibrat</title>
 		<link type="text/css" rel="stylesheet" href="http://orderedlist.github.com/minimal/stylesheets/styles.css">
 		<link type="text/css" rel="stylesheet" href="http://onehackoranother.com/projects/jquery/tipsy/stylesheets/tipsy.css">
-		<style type="text/css">h3,pre{clear:both;}@media print, screen and (max-height: 400px) and (min-width: 960px) { footer { display:none; } }</style>
+		<style type="text/css">#demo{margin:0 auto 1.5em;display:block}#global{width:75%;float:left;margin-right:1em;}.ok{color:green}.error{color:red}textarea{vertical-align:top}h3,pre{clear:both}@media print,screen and (max-height: 400px) and (min-width: 960px){footer{display:none}}</style>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -90,7 +90,7 @@ $( '#circles_square' )
   $( this ).css( { cursor: 'crosshair' } );
 } );</pre></code>
 				<h4>Tooltip on static map marker.</h4>
-				<img id="map" src="http://maps.googleapis.com/maps/api/staticmap?markers=Paris,France&size=200x160&zoom=16&sensor=false" alt="map example" style="width:200px;height:160px;float:right; margin: 0 0 0 2em;" title="I ❤ Paris">
+				<img id="map" src="http://maps.googleapis.com/maps/api/staticmap?markers=Paris,France&size=200x160&zoom=12&sensor=false" alt="map example" style="width:200px;height:160px;float:right; margin: 0 0 0 2em;" title="I ❤ Paris">
 				<code class="run"><pre style="clear:none;">
 $( '#map' )
 .tipsy( { trigger: 'manual', gravity: 's' } )
@@ -101,7 +101,16 @@ $( '#map' )
   $( this ).tipsy( 'hide' );
 } );</pre></code>
 				<h3>Play Ground</h3>
-				<p>Coming soon, a last demo you can <s>play</s> code with&nbsp;!</p>
+				<p>Another demo you can <s>play</s> code with&nbsp;!</p>
+				<img id="demo" title="this is #demo element, use inputs below to play with" src="http://www.grand-illusions.com/images/articles/opticalillusions/scintillation_grid/mainimage.jpg" width="470" height="350" alt="demo test">
+				<code class="sandbox"><pre><span><textarea id="global"></textarea></span>Global JS <button>run</button><br/>Always executed </pre><div></div></code>
+				<code class="sandbox"><pre><span>
+$( '#demo' )
+.mousecenterenter( <input type="text"/>, <textarea></textarea> );</span> <button>run</button></pre><div></div></code>
+				<code class="sandbox"><pre><span>
+$( '#demo' )
+.mousecenterleave( <input type="text"/>, <textarea></textarea> );</span> <button>run</button></pre><div></div></code>
+					<p><strong>Tip&nbsp;:</strong> If you've binded too much, clean up with <br/><code>$( '#demo' ).unbind( 'mousecenterenter mousecenterleave' )</code></p>
 			</section>
 			<footer>
 				<p>This project is maintained by <a class="user-mention" href="https://github.com/adriengibrat">adriengibrat</a></p>
@@ -116,6 +125,21 @@ $( '#map' )
 			$( function () {
 				$( 'code.run' ).each( function () {
 					$.globalEval( $( this ).text() );
+				} );
+				$( '.sandbox button' ).click( function () {
+					var button    = $( this )
+						script    = button.siblings( 'span' )
+						, logs    = button.parent( 'pre' ).next( 'div' )
+						, data    = script.find( 'input' ).val()
+						, handler = script.find( 'textarea' ).val()
+						, code    = $( '#global' ).val().replace( /([^;])$/, '$1;' ) + 
+							script.text().replace( ',', ( handler && data && data + ',' || data ) + handler );
+					try {
+						$.globalEval( code );
+						logs.html( code && '<p class="ok"><code>' + code + '</code> OK</p>' );
+					} catch ( error ) {
+						logs.html( '<p class="error"><code>' + code + '</code> ' + error.message + '</p>' );
+					};
 				} );
 			} );
 		</script>
