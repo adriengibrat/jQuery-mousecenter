@@ -1,5 +1,5 @@
 /**
- * jQuery mouseCenter v1.0.0
+ * jQuery mouseCenter v1.0.1
  * 
  * Author: Adrien Gibrat <adrien.gibrat@gmail.com>
  * 
@@ -175,7 +175,8 @@ $( 'selector' )
 			 * @return boolean, is point inside square
 			 */
 			square   : function ( x, y ) {
-				return this >= Math.abs( x ) && this >= Math.abs( y );
+				var halfside = parseFloat( this );
+				return halfside >= Math.abs( x ) && halfside >= Math.abs( y );
 			}
 			/**
 			 * Helper function to check if a point inside a circle (radius = 2 * this)
@@ -184,9 +185,36 @@ $( 'selector' )
 			 * @return boolean, is point inside circle
 			 */
 			, circle : function ( x, y ) {
-				return this >= Math.sqrt( Math.pow( x, 2 ) + Math.pow( y, 2 ) );
+				return parseFloat( this ) >= Math.sqrt( Math.pow( x, 2 ) + Math.pow( y, 2 ) );
 			}
-			// now, you can extend $.mousecenter with you own shapes !
+			/**
+			 * Helper function to check if a point inside a square losange (diagonal = 2 * this)
+			 * @param x int, x coordinate of point relative to center
+			 * @param y int, y coordinate of point relative to center
+			 * @return boolean, is point inside losange
+			 */
+			, losange : function ( x, y ) {
+				var halfdiagonal = parseFloat( this )
+				return ( Math.abs( y ) + Math.abs( x ) ) / halfdiagonal < 1;
+			}
+			/**
+			 * Helper functions to check point position relative to center
+			 * @param x int, x coordinate of point relative to center
+			 * @param y int, y coordinate of point relative to center
+			 * @return boolean, is point on top / right / bottom / left
+			 */
+			, top    : function ( x, y ) {
+				return y >= parseFloat( this );
+			}
+			, right  : function ( x ) {
+				return x >= parseFloat( this );
+			}
+			, bottom : function ( x, y ) {
+				return parseFloat( this ) >= y;
+			}
+			, left   : function ( x ) {
+				return parseFloat( this ) >= x;
+			}
 		}
 	);
 } )( jQuery );
