@@ -1,5 +1,5 @@
 /**
- * jQuery mouseCenter v1.0.1
+ * jQuery mouseCenter v1.1.0
  * 
  * Author: Adrien Gibrat <adrien.gibrat@gmail.com>
  * 
@@ -59,7 +59,7 @@ $( 'selector' )
 				nop   = function () {},
 				bound = function () {
 					return bind.apply( 
-						this instanceof nop ? this : context || window, 
+						this instanceof nop ? this : context == null ? window : context, 
 						args.concat( Array.prototype.slice.call( arguments ) )
 					);
 				};
@@ -89,7 +89,7 @@ $( 'selector' )
 				, offset = self.offset()
 			;
 			// Is within area relative to center 
-			if ( within( event.pageX - offset.left - self.width() / 2, event.pageY - offset.top - self.height() / 2 ) ) {
+			if ( within( event.pageX - offset.left - self.width() / 2, offset.top - event.pageY + self.height() / 2 ) ) {
 				if ( ! inside ) {
 					// Store new state
 					state[ handleObj.guid ] = true;
@@ -161,59 +161,74 @@ $( 'selector' )
 		/**
 		 * Create function that check if a point inside a shape
 		 * @param shape string, name of the shape to create (must be a helper name)
+		 *           or array list of shape or shape & size (ex: ['top',['square',60]])
 		 * @param size int, size of the shape ( but you could pass any object for your custom shape helper)
+		 * @param elment dom, element will be the shape function context
 		 * @return function, that take point coordinates to check if it's inside the shape
 		 */
-		function ( shape, size ) {
-			return ( shape = $[ namespace ][ shape ] ) && shape.bind( size );
+		function ( shape, size, elment ) {
+			if ( $.isArray( shape ) )
+				return function ( x, y ) {
+					var within;
+					$.each( shape, function ( index, item ) {
+						var fn = $.isArray( item ) ? 
+							$[ namespace ]( item[0], item[1] ) : 
+							$[ namespace ]( item, size );
+						return within = fn && fn( x, y );
+					} );
+					return within;
+				}
+			return ( shape = $[ namespace ][ shape ] ) && shape.bind( elment, size );
 		}
 		, {
 			/**
 			 * Helper function to check if a point inside a square (side = 2 * this)
+			 * @param halfside int, halfside of the square
 			 * @param x int, x coordinate of point relative to center
 			 * @param y int, y coordinate of point relative to center
 			 * @return boolean, is point inside square
 			 */
-			square   : function ( x, y ) {
-				var halfside = parseFloat( this );
+			square   : function ( halfside, x, y ) {
 				return halfside >= Math.abs( x ) && halfside >= Math.abs( y );
 			}
 			/**
-			 * Helper function to check if a point inside a circle (radius = 2 * this)
+			 * Helper function to check if a point inside a circle
+			 * @param radius int, radius of the circle
 			 * @param x int, x coordinate of point relative to center
 			 * @param y int, y coordinate of point relative to center
 			 * @return boolean, is point inside circle
 			 */
-			, circle : function ( x, y ) {
-				return parseFloat( this ) >= Math.sqrt( Math.pow( x, 2 ) + Math.pow( y, 2 ) );
+			, circle : function ( radius, x, y ) {
+				return radius >= Math.sqrt( Math.pow( x, 2 ) + Math.pow( y, 2 ) );
 			}
 			/**
-			 * Helper function to check if a point inside a square losange (diagonal = 2 * this)
+			 * Helper function to check if a point inside a square losange
+			 * @param halfdiagonal int, halfdiagonal of the losange
 			 * @param x int, x coordinate of point relative to center
 			 * @param y int, y coordinate of point relative to center
 			 * @return boolean, is point inside losange
 			 */
-			, losange : function ( x, y ) {
-				var halfdiagonal = parseFloat( this )
+			, losange : function ( halfdiagonal, x, y ) {
 				return ( Math.abs( y ) + Math.abs( x ) ) / halfdiagonal < 1;
 			}
 			/**
 			 * Helper functions to check point position relative to center
+			 * @param limit int, limit zone (use negative number to invert)
 			 * @param x int, x coordinate of point relative to center
 			 * @param y int, y coordinate of point relative to center
 			 * @return boolean, is point on top / right / bottom / left
 			 */
-			, top    : function ( x, y ) {
-				return y >= parseFloat( this );
+			, top    : function ( limit, x, y ) {
+				return limit < 0 && -limit < y || 0 < y && y < limit;
 			}
-			, right  : function ( x ) {
-				return x >= parseFloat( this );
+			, right  : function ( limit, x ) {
+				return limit < 0 && -limit < x || 0 < x && x < limit;
 			}
-			, bottom : function ( x, y ) {
-				return parseFloat( this ) >= y;
+			, bottom : function ( limit, x, y ) {
+				return limit < 0 && limit > y || 0 > y && y > -limit;
 			}
-			, left   : function ( x ) {
-				return parseFloat( this ) >= x;
+			, left   : function ( limit, x ) {
+				return limit < 0 && limit > x || 0 > x && x > -limit;
 			}
 		}
 	);

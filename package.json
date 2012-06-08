@@ -2,7 +2,7 @@
 	"name"        : "jquery.mousecenter",
 	"title"       : "jQuery mouseCenter",
 	"description" : "Trigger special events when mouse enter / leave element center area.",
-	"version"     : "1.0.0",
+	"version"     : "1.1.0",
 	"dependencies": {
 		"jquery": ">=1.4.2"
 	},
