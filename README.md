@@ -11,7 +11,7 @@ relative to center of element as arguments and returning a boolean.
 The shape/distance is passed in or as data argument when you bind your function: 
 you can pass integer and function as data or in a hash as 'distance' property.
 
-Usage exemples:
+Usage examples:
 ```javascript
 $( 'selector' )
 
@@ -42,7 +42,7 @@ $( 'selector' )
 	;
 // For example clarity sake, i used the square40 plain function
 // But you can use $.mousecenter( 'square', size ) to easily create function for various "square size",
-// In this exemple: square40 === $.mousecenter( 'square', 20 )
+// In this example: square40 === $.mousecenter( 'square', 20 )
 // You can extend $.mousecenter to create new resizable shapes (@see end of jquery.mousecenter.js)
 
 ```
