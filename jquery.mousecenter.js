@@ -1,5 +1,5 @@
 /**
- * jQuery mouseCenter v1.1.0
+ * jQuery mouseCenter v1.1.1
  * 
  * Author: Adrien Gibrat <adrien.gibrat@gmail.com>
  * 
@@ -48,26 +48,6 @@ $( 'selector' )
 
  */
 ( function ( $ ) {
-	/**
-	 * Add function binding to JavaScript prior 1.8.5
-	 * @see https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind
-	 */
-	if ( ! Function.prototype.bind ) {
-		Function.prototype.bind = function ( context ) {
-			var args  = Array.prototype.slice.call( arguments, 1 ), 
-				bind  = this, 
-				nop   = function () {},
-				bound = function () {
-					return bind.apply( 
-						this instanceof nop ? this : context == null ? window : context, 
-						args.concat( Array.prototype.slice.call( arguments ) )
-					);
-				};
-			nop.prototype   = this.prototype;
-			bound.prototype = new nop();
-			return bound;
-		};
-	}
 	var 
 		namespace = 'mousecenter'
 		/**
@@ -126,7 +106,7 @@ $( 'selector' )
 			, add      : function ( handleObj ) {
 				var distance = ( $.isPlainObject( handleObj.data ) ? handleObj.data.distance : handleObj.data ) || 50;
 				$( this )
-					.bind( 'mousemove.' + namespace + handleObj.guid, handler.bind( this, type, distance, handleObj ) )
+					.bind( 'mousemove.' + namespace + handleObj.guid, $.proxy( handler, this, type, distance, handleObj ) )
 					.data( namespace )[ handleObj.guid ] = false
 				;
 			}
@@ -178,7 +158,7 @@ $( 'selector' )
 					} );
 					return within;
 				}
-			return ( shape = $[ namespace ][ shape ] ) && shape.bind( elment, size );
+			return ( shape = $[ namespace ][ shape ] ) && $.proxy( shape, elment, size );
 		}
 		, {
 			/**
